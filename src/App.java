@@ -16,6 +16,7 @@ public class App {
     private static List<List<Integer>> listOfNumbers = Arrays.asList(list01, list02, list03);
 
     private static List<String> countries = Arrays.asList("India", "Australia", "SriLanka", "Russia", "Australia", "SriLanka", "India");
+    private static List<String> listOfCountries = Arrays.asList("India", "Australia", "SriLanka", "Russia", "Indonesia");
     public static void main(String[] args) throws Exception {
 
         List<Integer> cubedNumbers = numbersStream // map()
@@ -35,6 +36,24 @@ public class App {
             .peek(e -> System.out.println("The even numbers are: " + e))
             .collect(Collectors.toList());
         
+        List<?> output = (List<?>) listOfCountries.stream() // collect()
+                .filter(x -> x.toString().startsWith("I"))
+                .collect(Collectors.toList());
+
+        long outputCount = listOfCountries.stream() // count()
+            .filter(x -> x.toString().startsWith("I"))
+            .count();
+
+        boolean allElementsStartingWithI = countries.stream() // allMatch()
+            .allMatch(x -> x.toString().startsWith("I"));
+
+        boolean areAllElementsStartingWithI = countries.stream() // anMatch()
+            .anyMatch(x -> x.toString().startsWith("I"));
+
+        listOfCountries.stream() // forEach()
+            .filter(x -> x.toString().startsWith("I"))
+            .forEach(System.out::println);
+
         System.out.println(numbers);
         System.out.println(otherNumbers);
         System.out.println(cubedNumbers);
@@ -42,5 +61,9 @@ public class App {
         System.out.println(sortNumbers);
         System.out.println(listOfIntegers);
         System.out.println(distinctCountries);
+        System.out.println(output);
+        System.out.println(outputCount);
+        System.out.println(allElementsStartingWithI);
+        System.out.println(areAllElementsStartingWithI);
     }
 }
