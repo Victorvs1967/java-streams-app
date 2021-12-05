@@ -17,42 +17,43 @@ public class App {
 
     private static List<String> countries = Arrays.asList("India", "Australia", "SriLanka", "Russia", "Australia", "SriLanka", "India");
     private static List<String> listOfCountries = Arrays.asList("India", "Australia", "SriLanka", "Russia", "Indonesia");
-    public static void main(String[] args) throws Exception {
+
+    public static void printResults() {
 
         List<Integer> cubedNumbers = numbersStream // map()
-            .map(x -> x * x * x).collect(Collectors.toList());
+                .map(x -> x * x * x).collect(Collectors.toList());
         List<Integer> evenNumbers = newNumbersStream // filter()
-            .filter(x -> x % 2 == 0).collect(Collectors.toList());
+                .filter(x -> x % 2 == 0).collect(Collectors.toList());
         List<Integer> sortNumbers = numbers.stream() // sorted()
-            .sorted().collect(Collectors.toList());
+                .sorted().collect(Collectors.toList());
         List<Integer> listOfIntegers = listOfNumbers.stream() // flatMap()
-            .flatMap(x -> x.stream())
-            .collect(Collectors.toList());
+                .flatMap(x -> x.stream())
+                .collect(Collectors.toList());
         List<String> distinctCountries = countries.stream() // distinct()
-            .distinct().collect(Collectors.toList());
+                .distinct().collect(Collectors.toList());
 
         Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 0) // peek()
-            .filter(x -> x % 2 == 0)
-            .peek(e -> System.out.println("The even numbers are: " + e))
-            .collect(Collectors.toList());
-        
+                .filter(x -> x % 2 == 0)
+                .peek(e -> System.out.println("The even numbers are: " + e))
+                .collect(Collectors.toList());
+
         List<?> output = (List<?>) listOfCountries.stream() // collect()
                 .filter(x -> x.toString().startsWith("I"))
                 .collect(Collectors.toList());
 
         long outputCount = listOfCountries.stream() // count()
-            .filter(x -> x.toString().startsWith("I"))
-            .count();
+                .filter(x -> x.toString().startsWith("I"))
+                .count();
 
         boolean allElementsStartingWithI = countries.stream() // allMatch()
-            .allMatch(x -> x.toString().startsWith("I"));
+                .allMatch(x -> x.toString().startsWith("I"));
 
         boolean areAllElementsStartingWithI = countries.stream() // anMatch()
-            .anyMatch(x -> x.toString().startsWith("I"));
+                .anyMatch(x -> x.toString().startsWith("I"));
 
         listOfCountries.stream() // forEach()
-            .filter(x -> x.toString().startsWith("I"))
-            .forEach(System.out::println);
+                .filter(x -> x.toString().startsWith("I"))
+                .forEach(System.out::println);
 
         System.out.println(numbers);
         System.out.println(otherNumbers);
@@ -66,4 +67,9 @@ public class App {
         System.out.println(allElementsStartingWithI);
         System.out.println(areAllElementsStartingWithI);
     }
+
+    public static void main(String[] args) throws Exception {
+        printResults();
+    }
+
 }
